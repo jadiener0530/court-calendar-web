@@ -1,0 +1,14 @@
+# Firebase service account key — NEVER commit this
+firebase_key.json
+
+# Database and compiled files
+court_schedule.db
+__pycache__/
+*.pyc
+*.pyo
+*.py.bak
+*.json.migrated
+
+# Desktop app only
+court_scheduler_4.py
+court_schedule.json

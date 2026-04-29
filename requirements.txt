@@ -1,0 +1,4 @@
+flask>=3.0
+werkzeug>=3.0
+firebase-admin>=6.5
+gunicorn>=21.0
