@@ -72,8 +72,14 @@ def _init_firebase():
     )
 
 
-# Initialise on import
-_init_firebase()
+@app.before_request
+def _ensure_firebase():
+    """Initialise Firebase on first web request rather than at import time.
+    This prevents blocking the desktop app when web_server is imported
+    just to use list_users / add_user / remove_user."""
+    import firebase_admin
+    if not firebase_admin._apps:
+        _init_firebase()
 
 
 # ── Firebase data helpers ──────────────────────────────────────────────────────
