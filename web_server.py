@@ -48,21 +48,28 @@ def _init_firebase():
 
     from firebase_admin import credentials
 
-    key_json_env = os.environ.get("FIREBASE_KEY_JSON")
+    # Try environment variable first (Render deployment)
+    key_json_env = os.environ.get("FIREBASE_KEY_JSON", "").strip()
     if key_json_env:
-        # Running on Render — credentials stored as env var
-        cred = credentials.Certificate(json.loads(key_json_env))
-    else:
-        # Running locally alongside the desktop app
-        key_file = os.path.join(WORK_DIR, "firebase_key.json")
-        if not os.path.exists(key_file):
-            raise RuntimeError(
-                "Firebase credentials not found. "
-                "Set FIREBASE_KEY_JSON env var or place firebase_key.json in the app folder."
-            )
-        cred = credentials.Certificate(key_file)
+        try:
+            key_dict = json.loads(key_json_env)
+            cred = credentials.Certificate(key_dict)
+            firebase_admin.initialize_app(cred, {"databaseURL": FIREBASE_DB_URL})
+            return
+        except Exception as exc:
+            raise RuntimeError(f"FIREBASE_KEY_JSON env var is set but could not be parsed: {exc}")
 
-    firebase_admin.initialize_app(cred, {"databaseURL": FIREBASE_DB_URL})
+    # Fall back to local key file (desktop app / local testing)
+    key_file = os.path.join(WORK_DIR, "firebase_key.json")
+    if os.path.exists(key_file):
+        cred = credentials.Certificate(key_file)
+        firebase_admin.initialize_app(cred, {"databaseURL": FIREBASE_DB_URL})
+        return
+
+    raise RuntimeError(
+        "Firebase credentials not found. "
+        "Set FIREBASE_KEY_JSON env var or place firebase_key.json in the app folder."
+    )
 
 
 # Initialise on import
