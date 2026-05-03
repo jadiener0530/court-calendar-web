@@ -129,10 +129,12 @@ def get_notes_for_days(day_strings):
     raw = _get_fb_data().get("cell_notes") or {}
     result = {}
     for key, note in raw.items():
-        parts = key.split("|", 1)
-        if len(parts) != 2 or parts[0] not in day_set:
+        # Key format: "YYYY-MM-DD|location|note"
+        parts = key.split("|")
+        if len(parts) < 3 or parts[-1] != "note" or parts[0] not in day_set:
             continue
-        d, loc = parts
+        d = parts[0]
+        loc = "|".join(parts[1:-1])
         if note:
             result.setdefault(d, {})[loc] = note
     return result
