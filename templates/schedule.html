@@ -8,8 +8,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #0a0e18;
-    color: #c8d8f0;
+    background: #ffffff;
+    color: #111111;
     font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 13px;
     min-height: 100vh;
@@ -17,8 +17,8 @@
 
   /* ── Top bar ── */
   .topbar {
-    background: #0d1526;
-    border-bottom: 2px solid #1e3060;
+    background: #f0f2f5;
+    border-bottom: 2px solid #d0d4dc;
     padding: 0 20px;
     height: 52px;
     display: flex;
@@ -32,16 +32,16 @@
   .topbar .logo {
     font-size: 16px;
     font-weight: 700;
-    color: #88b0f8;
+    color: #1a3a5c;
     white-space: nowrap;
     margin-right: 8px;
   }
 
   .topbar .nav-btn {
-    background: #111e3a;
-    border: 1px solid #1e3060;
+    background: #ffffff;
+    border: 1px solid #d0d4dc;
     border-radius: 5px;
-    color: #88b0f8;
+    color: #1a3a5c;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
@@ -50,12 +50,12 @@
     transition: background 0.15s;
     line-height: 1;
   }
-  .topbar .nav-btn:hover { background: #1a2e58; }
+  .topbar .nav-btn:hover { background: #e4e8f0; }
 
   .topbar .nav-label {
     font-size: 13px;
     font-weight: 600;
-    color: #c8d8f0;
+    color: #111111;
     min-width: 200px;
     text-align: center;
   }
@@ -67,10 +67,10 @@
   }
 
   .view-toggle a {
-    background: #111e3a;
-    border: 1px solid #1e3060;
+    background: #ffffff;
+    border: 1px solid #d0d4dc;
     border-radius: 5px;
-    color: #6888b0;
+    color: #555555;
     cursor: pointer;
     font-size: 11px;
     font-weight: 600;
@@ -82,32 +82,32 @@
   }
 
   .view-toggle a.active {
-    background: #1a3878;
-    border-color: #2848a0;
-    color: #c8d8f0;
+    background: #1a3a5c;
+    border-color: #1a3a5c;
+    color: #ffffff;
   }
 
-  .view-toggle a:hover:not(.active) { background: #1a2e58; }
+  .view-toggle a:hover:not(.active) { background: #e4e8f0; }
 
   .topbar .user-info {
     font-size: 11px;
-    color: #4a5878;
+    color: #555555;
     margin-left: 12px;
     white-space: nowrap;
   }
 
   .topbar .logout-btn {
     background: none;
-    border: 1px solid #2a3858;
+    border: 1px solid #d0d4dc;
     border-radius: 4px;
-    color: #4a5878;
+    color: #555555;
     cursor: pointer;
     font-size: 11px;
     padding: 4px 10px;
     text-decoration: none;
     transition: border-color 0.15s, color 0.15s;
   }
-  .topbar .logout-btn:hover { border-color: #8a1c1c; color: #ff6b6b; }
+  .topbar .logout-btn:hover { border-color: #cc0000; color: #cc0000; }
 
   /* ── Main content ── */
   .main { padding: 16px 12px; overflow-x: auto; }
@@ -124,15 +124,15 @@
   }
 
   .week-header-corner {
-    background: #0d1526;
-    border-right: 1px solid #1e3060;
-    border-bottom: 1px solid #1e3060;
+    background: #f0f2f5;
+    border-right: 1px solid #d0d4dc;
+    border-bottom: 1px solid #d0d4dc;
   }
 
   .week-day-header {
-    background: #0d1526;
-    border-right: 1px solid #1e3060;
-    border-bottom: 1px solid #1e3060;
+    background: #f0f2f5;
+    border-right: 1px solid #d0d4dc;
+    border-bottom: 1px solid #d0d4dc;
     padding: 8px 6px;
     text-align: center;
   }
@@ -141,7 +141,7 @@
 
   .day-name {
     font-size: 10px;
-    color: #6888b0;
+    color: #555555;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -149,18 +149,18 @@
   .day-num {
     font-size: 18px;
     font-weight: 700;
-    color: #88b0f8;
+    color: #111111;
     line-height: 1.2;
   }
 
   .day-date {
     font-size: 10px;
-    color: #4a5878;
+    color: #777777;
   }
 
   .week-day-header.today .day-num {
     color: #ffffff;
-    background: #1a3878;
+    background: #1a3a5c;
     border-radius: 50%;
     width: 28px;
     height: 28px;
@@ -168,16 +168,16 @@
     display: inline-block;
   }
 
-  .week-day-header.weekend { opacity: 0.55; }
+  .week-day-header.weekend { opacity: 0.6; }
 
   .loc-label-cell {
-    background: #0d1526;
-    border-right: 1px solid #1e3060;
-    border-bottom: 1px solid #172040;
+    background: #f0f2f5;
+    border-right: 1px solid #d0d4dc;
+    border-bottom: 1px solid #e4e8f0;
     padding: 10px 10px;
     font-size: 11px;
     font-weight: 600;
-    color: #6888b0;
+    color: #333333;
     text-transform: uppercase;
     letter-spacing: 0.3px;
     display: flex;
@@ -194,9 +194,9 @@
   .loc-label-cell.close   { color: #e06868; border-left: 3px solid #8a1c1c; }
 
   .week-cell {
-    background: #0a0e18;
-    border-right: 1px solid #172040;
-    border-bottom: 1px solid #172040;
+    background: #ffffff;
+    border-right: 1px solid #e4e8f0;
+    border-bottom: 1px solid #e4e8f0;
     padding: 6px 5px;
     min-height: 56px;
     vertical-align: top;
@@ -204,7 +204,7 @@
 
   .week-cell:last-child { border-right: none; }
 
-  .week-cell.weekend { background: #090d16; opacity: 0.7; }
+  .week-cell.weekend { background: #f8f9fb; opacity: 0.8; }
 
   .week-row:last-child .week-cell,
   .week-row:last-child .loc-label-cell {
@@ -212,11 +212,12 @@
   }
 
   .dep-chip {
-    background: #111e3a;
-    border: 1px solid #1e3060;
+    background: #6b7280;
+    border: none;
     border-radius: 3px;
-    color: #c8d8f0;
+    color: #ffffff;
     font-size: 10px;
+    font-weight: 600;
     margin: 1px 0;
     padding: 2px 5px;
     white-space: nowrap;
@@ -225,9 +226,9 @@
   }
 
   .event-tag {
-    background: #0d1f40;
+    background: #e8eef8;
     border-radius: 2px;
-    color: #88b0f8;
+    color: #1a3a5c;
     font-size: 9px;
     margin: 1px 0;
     padding: 1px 4px;
@@ -235,9 +236,10 @@
   }
 
   .note-tag {
-    background: #2a2608;
+    background: #fffbe6;
+    border: 1px solid #e8d800;
     border-radius: 2px;
-    color: #ffe066;
+    color: #5a4a00;
     font-size: 9px;
     margin-top: 2px;
     padding: 2px 4px;
@@ -247,7 +249,7 @@
 
   /* ── MONTH VIEW ── */
   .month-grid {
-    border: 1px solid #1e3060;
+    border: 1px solid #d0d4dc;
     border-radius: 6px;
     overflow: hidden;
     min-width: 700px;
@@ -256,8 +258,8 @@
   .month-day-headers {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    background: #0d1526;
-    border-bottom: 1px solid #1e3060;
+    background: #f0f2f5;
+    border-bottom: 1px solid #d0d4dc;
   }
 
   .month-dh {
@@ -265,7 +267,7 @@
     padding: 8px 4px;
     font-size: 10px;
     font-weight: 600;
-    color: #6888b0;
+    color: #555555;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -273,14 +275,14 @@
   .month-week-row {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border-bottom: 1px solid #172040;
+    border-bottom: 1px solid #e4e8f0;
   }
 
   .month-week-row:last-child { border-bottom: none; }
 
   .month-day-cell {
-    background: #0a0e18;
-    border-right: 1px solid #172040;
+    background: #ffffff;
+    border-right: 1px solid #e4e8f0;
     min-height: 100px;
     padding: 5px;
     vertical-align: top;
@@ -289,26 +291,26 @@
   .month-day-cell:last-child { border-right: none; }
 
   .month-day-cell.other-month {
-    background: #070b14;
-    opacity: 0.5;
+    background: #f8f9fb;
+    opacity: 0.6;
   }
 
   .month-day-cell.today-cell {
-    background: #0d1a30;
+    background: #eef3fa;
   }
 
-  .month-day-cell.weekend { background: #090d16; }
+  .month-day-cell.weekend { background: #f8f9fb; }
 
   .month-num {
     font-size: 12px;
     font-weight: 600;
-    color: #6888b0;
+    color: #555555;
     margin-bottom: 4px;
   }
 
   .month-day-cell.today-cell .month-num {
     color: #ffffff;
-    background: #1a3878;
+    background: #1a3a5c;
     border-radius: 50%;
     width: 22px;
     height: 22px;
@@ -320,20 +322,21 @@
 
   .month-loc-label {
     font-size: 9px;
-    color: #4a5878;
+    color: #777777;
     text-transform: uppercase;
     letter-spacing: 0.3px;
     margin-top: 5px;
     margin-bottom: 1px;
   }
 
-  .month-loc-label.has-staff { color: #6888b0; }
+  .month-loc-label.has-staff { color: #333333; }
 
   .month-dep-chip {
-    background: #111e3a;
+    background: #6b7280;
     border-radius: 2px;
-    color: #c8d8f0;
+    color: #ffffff;
     font-size: 9px;
+    font-weight: 600;
     padding: 1px 4px;
     margin: 1px 0;
     white-space: nowrap;
@@ -349,9 +352,9 @@
 
   /* ── Scrollbar ── */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: #090d16; }
-  ::-webkit-scrollbar-thumb { background: #1e3060; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #2848a0; }
+  ::-webkit-scrollbar-track { background: #f0f2f5; }
+  ::-webkit-scrollbar-thumb { background: #c0c4cc; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #9098a8; }
 </style>
 </head>
 <body>
