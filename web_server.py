@@ -8,7 +8,8 @@ standalone Render.com deployment (gunicorn web_server:app).
 import os
 import json
 import sqlite3
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from functools import wraps
 
 from flask import (
@@ -22,6 +23,17 @@ DB_FILE  = os.path.join(WORK_DIR, "court_schedule.db")
 TMPL_DIR = os.path.join(WORK_DIR, "templates")
 
 FIREBASE_DB_URL = "https://courts-calendar-default-rtdb.firebaseio.com"
+
+# The server (e.g. Render.com) runs its clock in UTC. local_today() would
+# therefore roll over to "tomorrow" several hours before midnight in the
+# court's local timezone. Pin "today" to the court's actual timezone instead.
+APP_TZ = ZoneInfo("America/New_York")
+
+
+def local_today() -> date:
+    """Current date in the court's local timezone, not the server's."""
+    return datetime.now(APP_TZ).date()
+
 
 LOCATIONS = [
     "Circuit Court",
@@ -187,7 +199,7 @@ def login_required(f):
 @app.route("/")
 @login_required
 def index():
-    return redirect(url_for("week_view", date_str=date.today().isoformat()))
+    return redirect(url_for("week_view", date_str=local_today().isoformat()))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -215,9 +227,9 @@ def logout():
 @login_required
 def week_view(date_str=None):
     try:
-        anchor = date.fromisoformat(date_str) if date_str else date.today()
+        anchor = date.fromisoformat(date_str) if date_str else local_today()
     except ValueError:
-        anchor = date.today()
+        anchor = local_today()
 
     days        = week_days(anchor)
     day_strings = [d.isoformat() for d in days]
@@ -238,7 +250,7 @@ def week_view(date_str=None):
         next_nav=(days[0] + timedelta(weeks=1)).isoformat(),
         nav_label=f"Week of {days[0].strftime('%B %d, %Y')}",
         username=session.get("username", ""),
-        today=date.today().isoformat(),
+        today=local_today().isoformat(),
         year=days[0].year,
         month=days[0].month,
     )
@@ -248,7 +260,7 @@ def week_view(date_str=None):
 @app.route("/month/<int:year>/<int:month>")
 @login_required
 def month_view(year=None, month=None):
-    today = date.today()
+    today = local_today()
     year  = year  or today.year
     month = max(1, min(12, month or today.month))
 
@@ -275,6 +287,8 @@ def month_view(year=None, month=None):
         nav_label=date(year, month, 1).strftime("%B %Y"),
         username=session.get("username", ""),
         today=today.isoformat(),
+        today_year=today.year,
+        today_month=today.month,
         week_anchor=today.isoformat(),
     )
 
